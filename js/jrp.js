@@ -80,6 +80,8 @@ var JRP = {
 		$("#info").hide();
 		$("body").trigger('jrp.end');
 		
+        if (JRP.test) return;
+        
 		JRP.cursor++;
 		var item = JRP.playlist[JRP.cursor];
 
@@ -141,7 +143,7 @@ $(document).ready(function(){
 	config.setup();
 	//scrobble.setup();
 	statusnet.setup();
-	//unhosted.setup();
+	unhosted.setup();
 	
 	// player
 	//JRP.test=true;

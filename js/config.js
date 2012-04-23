@@ -4,6 +4,7 @@ var config = {
 	tool_tpl :' ',
 	list_tpl : '',
 	elm: null,
+    storage: localStorage,
 	
 	setup : function() {
 		config.elm = $("#config");
@@ -32,7 +33,7 @@ var config = {
 				prefix = s[0]; plugin = s[1]; opt = s[2];
 				
 				config.plugins[plugin][opt] = val;
-				localStorage.setItem(oid, val);
+				config.storage.setItem(oid, val);
 			});
 			$("body").trigger('jrp.optsupdated');
 			config.show();
@@ -53,7 +54,7 @@ var config = {
 				s = oid.split(".");
 				prefix = s[0]; plugin = s[1]; opt = s[2];
 				config.plugins[plugin][opt] = val;
-				localStorage.removeItem(oid);
+				config.storage.removeItem(oid);
 				
 			});
 			$("body").trigger('jrp.optsupdated');
@@ -85,8 +86,16 @@ var config = {
 		$("#config-container").addClass('hidden');
 	},
 	
-	show: function() {
-		config.elm.html('');
+    reload:function() {
+        // reload configs and redraw
+        for (k in config.plugins){
+            config.get_opts(k);
+        }
+        config.redraw();
+    },
+    
+    redraw: function() {
+        config.elm.html('');
 		for (k in config.plugins){
 			var plug = config.plugins[k];
 			var html="";
@@ -97,6 +106,9 @@ var config = {
 			}
 			config.elm.append("<li id='"+plug.id+"' class='tool'>"+html+"</li>");
 		};
+    },
+	show: function() {
+        config.redraw();
 		$("#config-container").removeClass('hidden');
 	},
 		
@@ -140,7 +152,7 @@ var config = {
 			var longid='jrp.'+name+"."+oid;
 			var value = plug[oid];
 			if (value=='' || value==null) {
-				value = localStorage.getItem(longid);
+				value = config.storage.getItem(longid);
 			}
 			if (value==null) {
 				switch(otype){
