@@ -206,7 +206,7 @@ var syncStorage = {
     getItem: function(key) {
         if (syncStorage.data[key]==undefined ) {
             storage.getData(key, syncStorage.cb);
-            return false;
+            return null;
         }   
         if (syncStorage.data[key].timestamp > (new Date().getTime+10000) ) {
             storage.getData(key, syncStorage.cb);
@@ -214,7 +214,7 @@ var syncStorage = {
         return syncStorage.data[key].data;
     },
     setItem: function(key, value) {
-        syncStorage.data[key] = {data:data, timestamp: new Date().getTime };
+        syncStorage.data[key] = {data:value, timestamp: new Date().getTime };
         storage.putData(key, value, function(error) {} );
     },
     removeItem: function(key) {
@@ -266,10 +266,10 @@ var unhosted = {
 
         // autologin
         unhosted.userAddress = localStorage.getItem('userAddress');
-        if (localStorage.getItem('userAddress')!=false && !helper.isAuthorized() && !helper.isConnected()) {
+        if (localStorage.getItem('userAddress')!=null && !helper.isAuthorized() && !helper.isConnected()) {
             unhosted.do_login(localStorage.getItem('userAddress'));
         }
-        if (localStorage.getItem('userAddress')!=false && helper.isAuthorized() && helper.isConnected()) {
+        if (localStorage.getItem('userAddress')!=null && helper.isAuthorized() && helper.isConnected()) {
             config.storage = syncStorage;
             config.reload();
         }
