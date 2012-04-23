@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5 Jamendo Random Player</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<!-- <script src="http://unhosted.org/remoteStorage.js">{}</script> -->
+	<script src="js/jquery-1.7.1.min.js"></script>
+	<script src="js/md5.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/scrobble.js"></script>
+	<script src="js/statusnet.js"></script>
+	<script src="js/unhosted.js"></script>
+	<script src="js/jrp.js"></script>
+</head>
+<body>
+	<div id="container">
+		<a href="http://www.jamendo.com/"><img src="imgs/logo.png"></a>
+		<div id="nav">
+			<button id="skip" title="Skip track"></button>
+			<button id="pp" title="Play/Pause" class="play"></button>			
+		</div>
+		<a href="#" id="settings" title="Settings"><img src="imgs/settings.png"></a>
+		<div id="loader"></div>	
+		<div id="info" style="display:none;">
+			<img class="cover" src="{5}">
+			<h2>{4}</h2>
+			<p>from <a href="{0}">{1}</a>, by <a href="{2}">{3}</a></p>
+			<ul id="tools">
+				<li><button class="{0}" title="{1}"><img src="{2}"></button></li>
+			</ul>			
+		</div>
+		<div id="player"></div>
+
+	</div>
+	<div id="config-container" class="hidden">
+		<ul id="config">
+			<li class="tool"><img src="{0}"><h3>{1}</h3><p>{2}</p><a href="#">Configure</a></li>
+		</ul>
+	</div>
+	<footer>
+		<p>Jamendo Random Player v0.1 by fabrixxm@kirgroup.com</p>
+		<p>See album pages for details on music license</p>
+		<p>HTML / CSS / JS</p>
+	</footer>		
+
+</body>
+</html>

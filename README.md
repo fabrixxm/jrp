@@ -1,4 +1,6 @@
-jrp
+Jamendo Random Player
 ===
 
-Jamendo Random Player - http://kirgroup.com/jrp
+Full HTML/JS Simple Jamendo Player
+
+http://kirgroup.com/jrp
